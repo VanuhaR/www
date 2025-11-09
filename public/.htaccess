@@ -1,0 +1,9 @@
+# public/.htaccess
+
+# Включаем движок перезаписи URL
+RewriteEngine On
+
+# Если запрашиваемый файл НЕ является существующим файлом...
+RewriteCond %{REQUEST_FILENAME} !-f
+# ...то перенаправить все запросы на index.php, передавая URL в параметре
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]

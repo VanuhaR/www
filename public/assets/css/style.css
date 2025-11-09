@@ -1,0 +1,610 @@
+/* public/assets/css/style.css */
+
+/* Общие стили и сброс */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Располагаем шапку и основной контент вертикально */
+    min-height: 100vh;
+}
+
+/* Стили для шапки */
+.main-header {
+    border-bottom: 1px solid #ccc;
+    flex-shrink: 0; /* Запрещаем шапке сжиматься */
+}
+
+.main-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px; /* Фиксированная высота для шапки */
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Основной контейнер, который содержит сайдбар и контент */
+.container {
+    display: flex;
+    flex-grow: 1; /* Занимает все оставшееся вертикальное пространство */
+    position: relative; /* ВАЖНО: это контекст для позиционирования сайдбара */
+}
+
+/* Стили для кнопки-бургера */
+.sidebar-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 20; /* Поверх всего */
+}
+
+.sidebar-toggle span {
+    width: 30px;
+    height: 3px;
+    background: #333;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
+
+/* Стили для боковой панели */
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    position: absolute; /* Позиционируется относительно .container */
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 10; /* Под кнопкой, но над контентом */
+}
+
+.sidebar.is-open {
+    transform: translateX(0);
+}
+
+/* Стили для основной области контента */
+.content {
+    flex-grow: 1; /* Занимает все оставшееся место в .container */
+    padding: 20px;
+}
+
+/* Стили для навигации */
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav li a {
+    display: block;
+    padding: 10px 5px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar nav li a:hover {
+    background-color: #e2e2e2;
+}
+
+.nav-group-title {
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 5px;
+    color: #666;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+/* Стили для панели статистики */
+.stats-bar {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.stats-bar span {
+    margin-right: 20px;
+}
+
+/* Стили для формы фильтров */
+.filter-form {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-form input[type="text"],
+.filter-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-form input[type="text"] {
+    flex-grow: 1; /* Поле поиска занимает доступное место */
+    min-width: 200px;
+}
+
+/* Стили для статусов */
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.status-active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Стили для панели действий */
+.actions-bar {
+    margin-bottom: 15px;
+}
+
+/* ================================================================= */
+/* НОВЫЕ СТИЛИ ДЛЯ ТАБЛИЦЫ */
+/* ================================================================= */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Стили для заголовков и ячеек */
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle; /* <-- Вертикальное выравнивание */
+}
+
+/* Стиль для заголовков таблицы */
+.data-table thead th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Эффект при наведении на строку таблицы */
+.data-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Выравнивание для конкретных колонок */
+/*
+.data-table th:last-child,
+.data-table td:last-child {
+    text-align: center;
+    white-space: nowrap;
+}
+*/
+
+/* ================================================================= */
+/* СТИЛИ ДЛЯ МАССОВЫХ ДЕЙСТВИЙ (ОСТАВЛЕНЫ ДЛЯ БУДУЩЕГО) */
+/* ================================================================= */
+
+.bulk-actions-panel {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#bulk-action-select, #bulk-position-select {
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Стили для чекбоксов в таблице (если вернем) */
+/*
+.data-table th:first-child,
+.data-table td:first-child {
+    text-align: center;
+}
+*/
+
+body .container #bulk-actions-panel {
+    display: none; /* По умолчанию скрыта */
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ================================================================= */
+/* СТИЛИ ДЛЯ КНОПОК ДЕЙСТВИЙ В ТАБЛИЦЕ */
+/* ================================================================= */
+
+/* Меньший размер кнопки для использования в таблицах */
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.8em;
+    text-decoration: none; /* Убираем подчеркивание у ссылок-кнопок */
+}
+
+/* Основная кнопка (синяя) - для редактирования */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Кнопка предупреждения (желтая) - для деактивации */
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Кнопка успеха (зеленая) - для активации */
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* ================================================================= */
+/* СТИЛЬ ДЛЯ КНОПКИ УДАЛЕНИЯ */
+/* ================================================================= */
+
+/* Кнопка опасного действия (красная) - для удаления */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/*
+.data-table th:last-child {
+    text-align: center;
+}
+*/
+
+/* ================================================================= */
+/* СТИЛИ ДЛЯ ФОРМЫ ИМПОРТА */
+/* ================================================================= */
+
+.import-form-inline {
+    display: inline-flex; /* Располагаем элементы в ряд */
+    align-items: center; /* Выравниваем по центру по вертикали */
+    gap: 10px; /* Отступ между полем файла и кнопкой */
+    margin-left: 20px; /* Отступ слева от других кнопок */
+}
+
+.import-form-inline input[type="file"] {
+    /* Стили для поля выбора файла, чтобы он лучше вписывался в дизайн */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+/* ================================================================= */
+/* СТИЛИ ДЛЯ СТРАНИЦЫ РЕДАКТИРОВАНИЯ СОТРУДНИКА */
+/* ================================================================= */
+
+.edit-form-container {
+    max-width: 900px; /* Ограничиваем ширину формы для лучшей читаемости */
+    margin: 0 auto; /* Центрируем форму на странице */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.edit-form h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #333;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+/* Двухколоночный макет для полей формы */
+.form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две равные колонки */
+    gap: 25px; /* Расстояние между колонками */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* Стили для группы радио-кнопок */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    padding-top: 8px;
+}
+
+.radio-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* Блок с кнопками действий */
+.form-actions {
+    display: flex;
+    gap: 15px; /* Расстояние между кнопками */
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .edit-form-container {
+        padding: 20px;
+        margin: 0 10px;
+    }
+
+    .form-layout {
+        grid-template-columns: 1fr; /* Возвращаемся к одной колонке */
+        gap: 0;
+    }
+
+    .form-actions {
+        flex-direction: column; /* Кнопки друг под другом */
+    }
+    /* ================================================================= */
+/* СТИЛЬ ДЛЯ ЦЕНТРИРОВАННОГО МАКЕТА СТРАНИЦЫ */
+/* ================================================================= */
+
+/* Этот класс мы будем добавлять к основному контейнеру на нужных страницах */
+.content.centered-layout {
+    display: flex;
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center;   /* Центрируем по вертикали */
+    padding: 20px;
+}
+
+/* Немного уменьшим максимальную ширину формы для лучшего вида на экранах */
+.content.centered-layout .edit-form-container {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* ================================================================= */
+/* СТИЛИ ДЛЯ "EXCEL-ВИДА" И ПАЛИТРЫ СМЕН */
+/* ================================================================= */
+
+.schedule-container {
+    background-color: #fff;
+    border: 1px solid #a9a9a9; /* Стандартная серая рамка Excel */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Стандартный шрифт Excel */
+    font-size: 11px;
+    padding: 10px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse; /* Убираем двойные рамки */
+    table-layout: fixed; /* Фиксированная структура для сетки */
+    border: 1px solid #a9a9a9;
+}
+
+.schedule-table th,
+.schedule-table td {
+    border: 1px solid #d0d7de; /* Светлые рамки ячеек, как в Excel */
+    height: 20px; /* Стандартная высота строки */
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.schedule-table th {
+    background-color: #f2f2f2; /* Серый фон шапки */
+    font-weight: bold;
+    color: #000;
+}
+
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+    width: 200px;
+    text-align: left;
+    padding: 2px 5px;
+    height: auto;
+}
+
+/* Стили для ПАЛИТРЫ СМЕН */
+.shift-palette-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.palette-title {
+    font-weight: bold;
+    color: #495057;
+}
+
+.shift-palette {
+    display: flex;
+    gap: 5px;
+}
+
+.shift-btn {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.shift-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.shift-btn.clear-btn {
+    background-color: #6c757d;
+    color: white;
+    border-color: #6c757d;
+}
+
+.shift-btn.clear-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Стили для ВЫБРАННОЙ ЯЧЕЙКИ */
+.schedule-cell.selected-cell {
+    border: 2px solid #007bff !important; /* Яркая синяя рамка */
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+}
