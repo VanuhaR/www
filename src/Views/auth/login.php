@@ -1,5 +1,17 @@
 <!-- src/Views/auth/login.php -->
 
+<?php require_once __DIR__ . '/../../src/Security/CsrfTokenManager.php'; ?>
+
+<form action="/public/employees/create" method="POST" class="edit-form">
+    <!-- Добавляем скрытое поле -->
+    <?= CsrfTokenManager::getHiddenInput() ?>
+    
+    <!-- Все остальные поля формы -->
+    <div class="form-column">
+        <!-- ... -->
+    </div>
+</form>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>

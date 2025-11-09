@@ -1,5 +1,17 @@
 <!-- src/Views/employees/edit.php -->
 
+<?php require_once __DIR__ . '/../../src/Security/CsrfTokenManager.php'; ?>
+
+<form action="/public/employees/create" method="POST" class="edit-form">
+    <!-- Добавляем скрытое поле -->
+    <?= CsrfTokenManager::getHiddenInput() ?>
+    
+    <!-- Все остальные поля формы -->
+    <div class="form-column">
+        <!-- ... -->
+    </div>
+</form>
+
 <div class="edit-form-container">
     <h3>Редактировать сотрудника: <?php echo htmlspecialchars($employee->full_name); ?></h3>
 
